@@ -1,6 +1,10 @@
 <div class="center jumbotron">
     <div class="text-center">
-        <h1>フリマサイトへようこそ！</h1>
-        <%= link_to 'Sign Up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+        <% if logged_in? %>
+            <h1>ようこそ　<%= current_user.name %></h1>
+        <% else %>
+            <h1>フリマサイトへようこそ！</h1>
+            <%= link_to 'Sign Up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+        <% end %>
     </div>
 </div>
