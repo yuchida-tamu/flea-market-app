@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @products = @user.products.order(id: :desc).page(params[:page])
+    counts(@user)
   end
 
   def new
