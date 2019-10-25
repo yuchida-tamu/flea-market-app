@@ -6,10 +6,26 @@ class User < ApplicationRecord
     has_secure_password
 
     has_many :products
+    has_many :favoritelists
+    has_many :favorites, through: :favoritelists, source: :product
+
     has_many :relationships
     has_many :followings, through: :relationships, source: :follow
     has_many :reverse_of_relationship, class_name: 'Relationship', foreign_key: "follow_id"
     has_many :followers, through: :reverse_of_relationship, source: :user
+
+    def add_favorite (product)
+        self.favoritelists.find_or_create_by(product_id: product.id)
+    end
+
+    def remove_favorite (product)
+        favorite = self.favoritelists.find_by(product_id: product.id)
+        favorite.destroy if favorite
+    end 
+
+    def is_favorite? (product)
+        self.favorites.include?(product)
+    end
 
     def follow (other_user)
         unless  self == other_user

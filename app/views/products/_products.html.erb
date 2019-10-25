@@ -1,12 +1,13 @@
+<% if products.any? %>
 <ul class="list-unstyled">
     <% products.each do |product| %>
         <li>
-            <div class="media">
+            <div class="card">
                 <img class="product__image">
             
                 <div class = "media-body">
-                    <div class="product-name"><h3><%= product.name %></h3></div>
-                    <div class="product-price"><p><%= product.price %></p></div>
+                    <%= link_to product.name, product_path(product), class: ""%>
+                    <div class="product-price"><p><%= product.price %>円</p></div>
                     <div class="product-info"><p><%= product.info %></p></div>
                     <div class="vendor">
                         <span>出品者：</span>
@@ -22,3 +23,4 @@
         </li>
     <% end %>
 </ul>
+<<% end %>>

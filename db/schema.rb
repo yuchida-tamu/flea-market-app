@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_144019) do
+ActiveRecord::Schema.define(version: 2019_10_25_194523) do
+
+  create_table "favoritelists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_favoritelists_on_product_id"
+    t.index ["user_id"], name: "index_favoritelists_on_user_id"
+  end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -40,6 +49,8 @@ ActiveRecord::Schema.define(version: 2019_10_25_144019) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "favoritelists", "products"
+  add_foreign_key "favoritelists", "users"
   add_foreign_key "products", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"

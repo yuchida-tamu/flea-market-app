@@ -58,6 +58,15 @@ class UsersController < ApplicationController
     counts(@user)
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    @favorites = @user.favorites.page(params[:page])
+    if current_user == @user
+      @following_user_products = current_user.feed_following_user_products.order(id: :desc).page(params[:page])
+    end
+    counts(@user)
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end

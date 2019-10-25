@@ -5,5 +5,6 @@
         <p><%= @product.info %></p>
         <p>出品主：<%= @product.user.name %></p>
     </div>
+    <%= render 'favoritelists/favorite_button', product: @product %>
 </div>
 
