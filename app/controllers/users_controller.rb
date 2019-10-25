@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :followings, :followers]
-
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy, :followings, :followers]
+  before_action :correct_user, only: [ :edit, :update, :destroy]
+  
   def index
     @users = User.order(id: :desc).page(params[:page]).per(15)
   end
@@ -32,12 +33,26 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    
   end
 
   def update
+    @user = User.find(params[:id])
+    
+    if @user.update(user_params)
+      flash[:success] = 'プロフィールを編集しました'
+      redirect_to @user
+    else 
+      flash.now[:danger] = 'プロフィールの編集に失敗しました'
+      render :edit
+    end
   end
 
   def destroy
+    @user.destroy
+    flash[:danger] = 'ユーザーを削除しました'
+    redirect_to root_url
   end
 
   def followings 
@@ -65,6 +80,13 @@ class UsersController < ApplicationController
       @following_user_products = current_user.feed_following_user_products.order(id: :desc).page(params[:page])
     end
     counts(@user)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    unless current_user == @user
+        redirect_to root_url
+    end
   end
 
   def user_params

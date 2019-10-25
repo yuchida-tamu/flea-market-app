@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
     belongs_to :user
-    has_many :favoritelists
+    has_many :favoritelists, dependent: :destroy
 
     validates :name, presence: true, length: { maximum: 50 }
     validates :price, presence: true, length: { maximum: 30}
