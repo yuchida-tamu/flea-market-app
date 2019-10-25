@@ -26,4 +26,8 @@ class User < ApplicationRecord
         self.followings.include?(other_user)
     end
 
+    def feed_following_user_products
+        Product.where(user_id: self.following_ids)
+    end
+
 end

@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @products = @user.products.order(id: :desc).page(params[:page])
     counts(@user)
+
+    if current_user == @user
+      @following_user_products = current_user.feed_following_user_products.order(id: :desc).page(params[:page])
+    end
   end
 
   def new
@@ -39,12 +43,18 @@ class UsersController < ApplicationController
   def followings 
     @user = User.find(params[:id])
     @followings = @user.followings.page(params[:page])
+    if current_user == @user
+      @following_user_products = current_user.feed_following_user_products.order(id: :desc).page(params[:page])
+    end
     counts(@user)
   end
 
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers.page(params[:page])
+    if current_user == @user
+      @following_user_products = current_user.feed_following_user_products.order(id: :desc).page(params[:page])
+    end
     counts(@user)
   end
 
