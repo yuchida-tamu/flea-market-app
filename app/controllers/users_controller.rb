@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    
+    @user.profile.attach(params[:profile]) if(params[:profile])
   end
 
   def update
@@ -90,6 +90,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile)
   end
 end

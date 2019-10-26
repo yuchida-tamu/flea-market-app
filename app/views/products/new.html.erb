@@ -22,6 +22,11 @@
         <%= f.text_field :info, class: 'form-control' %>
       </div>
 
+      <div class="form-group">
+        <%= f.label :picture, '商品写真' %>
+        <%= f.file_field :picture %>
+      </div>
+
       
 
       <%= f.submit '出品', class: 'btn btn-primary btn-block' %>

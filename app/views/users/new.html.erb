@@ -18,6 +18,11 @@
       </div>
 
       <div class="form-group">
+        <%= f.label :profile, 'プロフィール写真'%>
+        <%= f.file_field :profile %>
+      </div>
+
+      <div class="form-group">
         <%= f.label :password, 'Password' %>
         <%= f.password_field :password, class: 'form-control' %>
       </div>

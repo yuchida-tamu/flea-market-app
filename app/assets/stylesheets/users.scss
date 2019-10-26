@@ -1,3 +1,55 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &__card {
+        display: flex;
+        width: 300px;
+        height: 200px;
+        margin: 10px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        
+        .index-profile {
+            width: 100px;
+            background: gray;
+        }
+        .empty__profile {
+            width: 100px;
+            height: 100px;
+            background: gray;
+            opacity: .3;
+        }
+       
+    }
+
+    
+
+}
+    
+.profile-container {
+
+    height: 600px;
+    &__body {
+
+    }
+
+    .empty-profile-picture {
+        height: 300px;
+        width: 100%;
+        background: gray;
+        opacity: .3;
+    }
+}
+
+.following-user-products {
+    height: 300px;
+    margin: 20px 0;
+    padding: 10px;
+}

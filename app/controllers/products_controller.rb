@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-   
+    @product.picture.attach(params[:picture]) if(params[:picture])
      
   end
 
@@ -47,7 +47,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :info)
+    params.require(:product).permit(:name, :price, :info, :picture)
   end
 
 

@@ -1,9 +1,16 @@
 <% if users.any? %>
-    <ul class="list-unstyled">
+    <ul class="list-unstyled user-list">
         <% users.each do |user| %>
             <li>
-                <%= user.name %>
-                <%= link_to 'View profile', user_path(user) %>
+                <div class="card user-list__card">
+                    <% if user.profile.attached? %> 
+                        <img src="<%= (url_for(user.profile)) %>" class="img-thumbnail index-profile">
+                    <% else %>
+                        <div class= "img-thumbnail empty__profile"></div>
+                    <% end %>
+                    <%= user.name %>
+                    <%= link_to 'View profile', user_path(user) %>
+                </div>
             </li>
         <% end %>
     </ul>

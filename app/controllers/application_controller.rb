@@ -10,11 +10,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def require_tobe_the_right_user (user)
-        unless current_user = user
-            redirect_to root
-        end
-    end
+    
 
     def counts(user)
         @count_products = user.products.count

@@ -5,6 +5,8 @@ class User < ApplicationRecord
                       uniqueness: { case_sensitive: false} 
     has_secure_password
 
+    has_one_attached :profile
+
     has_many :products, dependent: :destroy
     has_many :favoritelists, dependent: :destroy
     has_many :favorites, through: :favoritelists, source: :product, dependent: :destroy

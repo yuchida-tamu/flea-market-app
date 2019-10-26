@@ -1,4 +1,9 @@
-<div class="container product">
+<div class="container product-detail-container">
+    <% if @product.picture.attached? %> 
+        <img class="img-thumbnail product-detail__image" src="<%= (url_for(@product.picture)) %>" >
+    <% else %>
+        <div class= "img-thumbnail empty-product__image"></div>            
+    <% end %>
     <h1><%= @product.name %></h1>
     <div>
         <p><%= @product.price %></p>
