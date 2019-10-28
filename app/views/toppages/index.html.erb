@@ -1,6 +1,6 @@
 <div class="text-center">
     <% if logged_in? %>
-        <h1>ようこそ　<%= current_user.name %></h1>
+        <h1>商品リスト</h1>
         <%= render 'products/products', products: @products %>
     <% else %>
         <div class="center jumbotron">

@@ -18,6 +18,8 @@
               <li class="dropdown-item"><%= link_to '商品を公開する', new_product_path  %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><%= link_to 'チャット', rooms_path %></li>
             </ul>
           </li>
         <% else %>

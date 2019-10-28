@@ -16,6 +16,9 @@ class User < ApplicationRecord
     has_many :reverse_of_relationship, class_name: 'Relationship', foreign_key: "follow_id", dependent: :destroy
     has_many :followers, through: :reverse_of_relationship, source: :user, dependent: :destroy
 
+    has_many :entries, dependent: :destroy
+    has_many :messages, dependent: :destroy
+
     def add_favorite (product)
         self.favoritelists.find_or_create_by(product_id: product.id)
     end

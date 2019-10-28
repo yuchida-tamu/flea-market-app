@@ -1,0 +1,16 @@
+<div class="chatbox">
+    <h1>チャット</h1>
+    <% if @entries.any? %>
+        <ul class="list-unstyled">
+            <% @entries.each do |entry| %>
+                <% entry.room.entries.each do |e| %>
+                    <% unless e.user == current_user %>
+                        <li><%= link_to e.user.name, room_path(entry.room.id) %></li>
+                    <% end %>
+                <% end %>
+                
+            <% end %>
+        </ul>
+    <% end %>
+
+</div>

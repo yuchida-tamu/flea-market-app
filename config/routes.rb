@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :products 
   resources :relationships, only: [:create, :destroy]
   resources :favoritelists, only: [:create, :destroy]
+  resources :messages, :only => [:create]
+  resources :rooms, :only => [:create, :show, :index]
 end
